@@ -17,7 +17,36 @@
     <li>Ran <strong>ng s</strong> to test it works</li>
     <li>Ran <strong>ng test</strong> to test that unit tests work</li>
     <li>Renamed all the .css with .scss and updated in the app.component and angular-cli.json <strong>"styleExt": "scss"</strong> so we use SASS instead of css.  This then matches what material will use</li>
+    <li>Added a web config file so the static pages are shown and altered assets within angular-cli.json to include it after favicon.ico</li>
     <li>Ran <strong>ng s</strong> to test it works</li>
     <li>Checked in first stage</li>
   </ul>
+  <h2>Set up azure website as test host</h2>
+  <ul>
+    <li>In Azure create new resource -&gt; Web App then fill in name and details (https://portal.azure.com/#create/hub)</li>
+    <li>Create a new project in visual studio online so you can set up a build https:/[your_company]].visualstudio.com/_projects</li>
+    <li>When on the getting started page choose Build code then Setup Build from an external repository (unless you have used vs git instead of github)</li>
+    <li>Choose GitHub and type a connection name then authorise (token the easiest)</li>
+ </ul>
+ <h2>Set up basic build (CD)</h2>
+ <ul>
+  <li>Choose the repository and continue</li>
+  <li>Choose empty process</li>
+  <li>Add npm custom with <strong>install --force</strong> </li>
+  <li>Add npm custom for Build the app with <strong>run-script build</strong></li>
+  <li>Add Azure App Service Deploy (set description, service name (choose from list don't type) and authorise)</li>
+  <li>Tick additional deployment options -> publish with web deploy, remove additional files &amp; set package or folder to <strong>$(System.DefaultWorkingDirectory)/dist</strong> </li>
+  <li>Click save, add a comment about this being the first test save and queue to test this part works</li>
+  <li>Click the build number to check the build process gets this far without error</li>
+  <li>If that works, click Triggers and toggle Enable Continuous Integration & pull request validation</li>
+  <li>Return to the application, make a change and check it in to see it building and deploying</li>
+</ul>
+<h2>Set up testing</h2>
+<ul>
+<li>Headless chrome etc...</li>
+</ul>
+<h2>Deploying to an external site</h2>
+<ul>
+  <li>TBD..</li>
+</ul>
 </div>
