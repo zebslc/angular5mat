@@ -1,5 +1,6 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function (config) {
   config.set({
@@ -15,6 +16,15 @@ module.exports = function (config) {
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+    files: [
+      { pattern: './src/test.ts', watched: false }
+    ],
+    preprocessors: {
+      './src/test.ts': ['@angular/cli']
+    },
+    mime: {
+      'text/x-typescript': ['ts','tsx']
+    },
     coverageIstanbulReporter: {
       reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
@@ -22,12 +32,36 @@ module.exports = function (config) {
     angularCli: {
       environment: 'dev'
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: config.angularCli && config.angularCli.codeCoverage
+              ? ['progress', 'coverage-istanbul']
+              : ['progress', 'kjhtml'],
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 80,
+        lines: 80,
+        branches: 80,
+        functions: 80
+      }
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
+    browsers: ['ChromeHeadless'],
+    singleRun: true,
+    customLaunchers: {
+      ChromeHeadless: {
+        base: 'Chrome',
+        flags: [
+          // See https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
+          '--headless',
+          '--disable-gpu',
+          // Without a remote debugging port, Google Chrome exits immediately.
+          '--remote-debugging-port=9222',
+        ],
+      }
+    }
   });
 };
