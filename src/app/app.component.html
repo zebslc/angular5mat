@@ -28,7 +28,7 @@
     <li>When on the getting started page choose Build code then Setup Build from an external repository (unless you have used vs git instead of github)</li>
     <li>Choose GitHub and type a connection name then authorise (token the easiest)</li>
  </ul>
- <h2>Set up basic build (CD)</h2>
+ <h2>Set up basic build (CI)</h2>
  <ul>
   <li>Choose the repository and continue</li>
   <li>Choose empty process</li>
@@ -41,16 +41,48 @@
   <li>If that works, click Triggers and toggle Enable Continuous Integration & pull request validation</li>
   <li>Return to the application, make a change and check it in to see it building and deploying</li>
 </ul>
-<h2>Set up testing</h2>
+<h2>Set up testing (CT)</h2>
 <ul>
-<li>Headless chrome etc...</li>
-<li>npm i --save-dev puppeteer karma-chrome-launcher jasmine-spec-name-patch karma-junit-reporter</li>
-<li>https://blogs.msdn.microsoft.com/premier_developer/2017/05/17/integrating-angular-4-unit-tests-with-visual-studio-team-services-vsts/</li>
-<li>https://coryrylan.com/blog/enforcing-code-coverage-in-angular-cli-projects</li>
-<li>https://medium.com/@danharris_io/how-to-setup-angular-e2e-tests-on-vsts-ci-be0872f9dc31</li>
+<li>Added Puppetter, Headless chrome etc...</li>
+<li>Configured Karma and Protractor to create coverage reports and use "Cobertura" which is a standard xml format for reporting in builds</li>
+<li>In the online build process configured steps for e2e and test/coverage with reporting so that the results appear on the summary</li>
+<li>The coverage report also includes tolerance percentage levels for acceptable coverage levels</li>
 </ul>
-<h2>Deploying to an external site</h2>
+<h2>Deploying to an external site (CD)</h2>
 <ul>
-  <li>TBD..</li>
+  <li>Initially this was set to Azure App Service Deploy in order to make sure the site could deploy correctly.</li>
+  <li>Now going to set up two deployment actions</li>
+  <ul>
+    <li>To an initial azure test site in order to ensure that the site works as expected</li>
+    <li>The live site running on a non-azure static webhost</li>
+  </ul>
+</ul>
+<h2>Adding Material</h2>
+<ul>
+  <li>So far this has just been about configuring the infrastructure of the site</li>
+  <li>Now we need to add in the material parts and adjust the tests</li>
+</ul>
+<h2>Adding Routes</h2>
+<ul>
+  <li>We are ready to add sample routing for this seed project</li>
+  <li>Create a route to a page that uses a service to get data &amp; tests</li>
+  <li>Create an interceptor so that the data is populated by the routing before the page starts &amp; add tests</li>
+</ul>
+<h2>Adding and optimising images</h2>
+<ul>
+  <li>Add some static images to our assets folder and then optimise them using the build process for display on mobile devices</li>
+</ul>
+<h2>Extra bits</h2>
+<ul>
+  <li>Progressive web app</li>
+  <li>Logins and security</li>
+</ul>
+<h2>Useful tools</h2>
+<ul>
+  <li>Webpack analyzer</li>
+</ul>
+<h2>Useful links</h2>
+<ul>
+  <li>Azure CI/CD with angular</li>
 </ul>
 </div>
