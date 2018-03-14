@@ -36,7 +36,7 @@ module.exports = function (config) {
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'kjhtml'],
     coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
+      reports: [ 'html', 'lcovonly', 'text', 'text-summary' ],
       fixWebpackSourcePaths: true,
       thresholds: {
         statements: 80,
@@ -58,6 +58,9 @@ module.exports = function (config) {
           // See https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
           '--headless',
           '--disable-gpu',
+          '--disable-translate',
+          '--disable-extensions',
+          '--no-sandbox',  // Added to fix an issue where of Failed to connect to chrome browser
           // Without a remote debugging port, Google Chrome exits immediately.
           '--remote-debugging-port=9222',
         ],
