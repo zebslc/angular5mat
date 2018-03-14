@@ -25,10 +25,6 @@ module.exports = function (config) {
     mime: {
       'text/x-typescript': ['ts','tsx']
     },
-    coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
-      fixWebpackSourcePaths: true
-    },
     angularCli: {
       environment: 'dev'
     },
@@ -36,7 +32,7 @@ module.exports = function (config) {
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'kjhtml'],
     coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly', 'text', 'text-summary' ],
+      reports: [ 'html', 'lcovonly', 'text', 'text-summary', 'cobertura' ],
       fixWebpackSourcePaths: true,
       thresholds: {
         statements: 80,
@@ -45,6 +41,17 @@ module.exports = function (config) {
         functions: 80
       }
     },
+    coverageReporter: {
+      type : 'cobertura'
+    },
+    remapIstanbulReporter: {
+      reports: {
+        cobertura: './coverage/cobertura.xml'
+      }
+    },
+    remapCoverageReporter: {
+      cobertura: './coverage/cobertura.xml',
+     },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
