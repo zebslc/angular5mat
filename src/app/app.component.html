@@ -47,6 +47,12 @@
 <li>Configured Karma and Protractor to create coverage reports and use "Cobertura" which is a standard xml format for reporting in builds</li>
 <li>In the online build process configured steps for e2e and test/coverage with reporting so that the results appear on the summary</li>
 <li>The coverage report also includes tolerance percentage levels for acceptable coverage levels</li>
+<li>
+  <ul>
+   <li>Add a new step <strong>Publish code coverage results</strong> and set the summary file to <strong>**/cobertura-coverage.xml</strong> with a report director of <strong>**/coverage/</strong></li>
+   <li>Add another step <strong>Publish Test Results</strong> and set teh test result files to <strong>**/e2e-results-junit.xml</strong> which searches for the junit.xml file containing e2e results</li>
+  </ul>
+</li>
 </ul>
 <h2>Deploying to an external site (CD)</h2>
 <ul>
@@ -54,6 +60,15 @@
   <li>Now going to set up two deployment actions</li>
   <ul>
     <li>To an initial azure test site in order to ensure that the site works as expected</li>
+    <li>
+      <ul>
+        <li>Open Visual Studio Online and edit the build</li>
+        <li>Add a new build step <strong>Publish Build Artifacts</strong> then set the path and artifact name to <strong>dist</strong></li>
+        <li>Click on the releases tab and create a new release definition</li>
+        <li>Add a new artifact and point it to the results of the build setting the trigger to continuous deployment</li>
+        <li>Add a new environment called <strong>Testing</strong> and within it's agent add <strong>Deploy Azure App Service pointing to the test site</strong></li>
+      </ul>
+    </li>
     <li>The live site running on a non-azure static webhost</li>
   </ul>
 </ul>
@@ -83,6 +98,6 @@
 </ul>
 <h2>Useful links</h2>
 <ul>
-  <li>Azure CI/CD with angular</li>
+  <li>Azure CI/CD with angular https://blogs.msdn.microsoft.com/wael-kdouh/2017/09/11/deploying-your-angular-application-to-azure-using-visual-studio-team-services-vsts/</li>
 </ul>
 </div>
