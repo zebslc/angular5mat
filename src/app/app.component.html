@@ -46,7 +46,7 @@
 <li>Added Puppetter, Headless chrome etc...</li>
 <li>Configured Karma and Protractor to create coverage reports and use "Cobertura" which is a standard xml format for reporting in builds</li>
 <li>In the online build process configured steps for e2e and test/coverage with reporting so that the results appear on the summary</li>
-<li>The coverage report also includes tolerance percentage levels for acceptable coverage levels</li>
+<li>The coverage report also includes tolerance percentage levels for acceptable coverage levels (can type <strong>npm run cover</strong> to see it)</li>
 <li>
   <ul>
    <li>Add a new step <strong>Publish code coverage results</strong> and set the summary file to <strong>**/cobertura-coverage.xml</strong> with a report director of <strong>**/coverage/</strong></li>
@@ -86,6 +86,8 @@
 <ul>
   <li>We are ready to add sample routing for this seed project</li>
   <li>Create a route to a page that uses a service to get data &amp; tests</li>
+  <li>Route for pictures <strong>ng g module --routing pics --dry-run</strong> lets us create a new area with a folder <strong>src/app/pics/</strong>  </li>
+
   <li>Create an interceptor so that the data is populated by the routing before the page starts &amp; add tests</li>
 </ul>
 <h2>Adding and optimising images</h2>
