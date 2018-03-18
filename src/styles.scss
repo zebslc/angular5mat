@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+$coverwise-app-primary:   mat-palette($mat-blue, 700);
+$coverwise-app-accent:    mat-palette($mat-green, A200, A100, A400);
+$coverwise-app-warn:      mat-palette($mat-red);
+
+$coverwise-app-theme: mat-light-theme(
+  $coverwise-app-primary,
+  $coverwise-app-accent,
+  $coverwise-app-warn);
+
+@include angular-material-theme($coverwise-app-theme);
+
+.dark-theme {
+  $primary-dark:  mat-palette($mat-indigo, 700);
+  $accent-dark:   mat-palette($mat-green);
+  $warn-dark:   mat-palette($mat-red);
+
+  $theme-dark: mat-dark-theme($primary-dark, $accent-dark, $warn-dark);
+
+  @include angular-material-theme($theme-dark);
+}
+
+body{
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+  transform: none !important;
+}

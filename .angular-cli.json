@@ -10,7 +10,9 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "web.config"
+        "web.config",
+        ".htaccess",
+        "robots.txt"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -20,7 +22,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
