@@ -1,0 +1,126 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+
+  <h2>Creating the project</h2>
+  <ul>
+    <li>Created project in my Github repository</li>
+    <li>Cloned to local folder <strong>git clone https://github.com/zebslc/angular5mat.git</strong></li>
+    <li>ran <strong>ng new matseed --dry-run</strong></li>
+    <li>Removed the --dry-run</li>
+    <li>Ran <strong>ng s</strong> to test it works</li>
+    <li>Ran <strong>ng test</strong> to test that unit tests work</li>
+    <li>Ran <strong>ng e2e</strong> to test that end to end tests work</li>
+    <li>Ran <strong>ng lint</strong> to test that there are no code standard issues</li>
+    <li>Ran <strong>npm update -g</strong> to update all the packages before starting</li>
+    <li>Ran <strong>ng s</strong> to test it works</li>
+    <li>Ran <strong>ng test</strong> to test that unit tests work</li>
+    <li>Renamed all the .css with .scss and updated in the app.component and angular-cli.json <strong>"styleExt": "scss"</strong> so we use SASS instead of css.  This then matches what material will use</li>
+    <li>Added a web config file so the static pages are shown and altered assets within angular-cli.json to include it after favicon.ico</li>
+    <li>Ran <strong>ng s</strong> to test it works</li>
+    <li>Checked in first stage</li>
+  </ul>
+  <h2>Set up azure website as test host</h2>
+  <ul>
+    <li>In Azure create new resource -&gt; Web App then fill in name and details (https://portal.azure.com/#create/hub)</li>
+    <li>Create a new project in visual studio online so you can set up a build https:/[your_company]].visualstudio.com/_projects</li>
+    <li>When on the getting started page choose Build code then Setup Build from an external repository (unless you have used vs git instead of github)</li>
+    <li>Choose GitHub and type a connection name then authorise (token the easiest)</li>
+ </ul>
+ <h2>Set up basic build (CI)</h2>
+ <ul>
+  <li>Choose the repository and continue</li>
+  <li>Choose empty process</li>
+  <li>Add npm custom with <strong>install --force</strong> </li>
+  <li>Add npm custom for Build the app with <strong>run-script build</strong></li>
+  <li>Add Azure App Service Deploy (set description, service name (choose from list don't type) and authorise)</li>
+  <li>Tick additional deployment options -> publish with web deploy, remove additional files &amp; set package or folder to <strong>$(System.DefaultWorkingDirectory)/dist</strong> </li>
+  <li>Click save, add a comment about this being the first test save and queue to test this part works</li>
+  <li>Click the build number to check the build process gets this far without error</li>
+  <li>If that works, click Triggers and toggle Enable Continuous Integration & pull request validation</li>
+  <li>Return to the application, make a change and check it in to see it building and deploying</li>
+</ul>
+<h2>Set up testing (CT)</h2>
+<ul>
+<li>Added Puppetter, Headless chrome etc...</li>
+<li>Configured Karma and Protractor to create coverage reports and use "Cobertura" which is a standard xml format for reporting in builds</li>
+<li>In the online build process configured steps for e2e and test/coverage with reporting so that the results appear on the summary</li>
+<li>The coverage report also includes tolerance percentage levels for acceptable coverage levels (can type <strong>npm run cover</strong> to see it)</li>
+<li>
+  <ul>
+   <li>Add a new step <strong>Publish code coverage results</strong> and set the summary file to <strong>**/cobertura-coverage.xml</strong> with a report director of <strong>**/coverage/</strong></li>
+   <li>Add another step <strong>Publish Test Results</strong> and set teh test result files to <strong>**/e2e-results-junit.xml</strong> which searches for the junit.xml file containing e2e results</li>
+  </ul>
+</li>
+</ul>
+<h2>Deploying to an external site (CD)</h2>
+<ul>
+  <li>Initially this was set to Azure App Service Deploy in order to make sure the site could deploy correctly.</li>
+  <li>Now going to set up two deployment actions</li>
+  <ul>
+    <li>To an initial azure test site in order to ensure that the site works as expected</li>
+    <li>
+      <ul>
+        <li>Open Visual Studio Online and edit the build</li>
+        <li>Add a new build step <strong>Publish Build Artifacts</strong> then set the path and artifact name to <strong>dist</strong></li>
+        <li>Click on the releases tab and create a new release definition</li>
+        <li>Add a new artifact and point it to the results of the build setting the trigger to continuous deployment</li>
+        <li>Add a new environment called <strong>Testing</strong> and within it's agent add <strong>Deploy Azure App Service pointing to the test site</strong></li>
+      </ul>
+    </li>
+    <li>The live site running on a non-azure static webhost</li>
+    <li>
+      <ul>
+        <li>Create a new release environment called <strong>Live</strong> and a new agent phase containing an FTP upload tool</li>
+        <li>Within the FTP upload tool click <strong>Manage FTP Service Endpoint</strong></li>
+        <li>Create a new generic service endpoint with the username, password and default of the live server</li>
+        <li>Choose the new endpoint in the FTP  Service Endpoint list</li>
+        <li>Set the remote directory and clear any existing contents</li>
+        <li>Save and test</li>
+      </ul>
+    </li>
+  </ul>
+</ul>
+<h2>Adding Material</h2>
+<ul>
+  <li>So far this has just been about configuring the infrastructure of the site</li>
+  <li>Now we need to add in the material parts and adjust the tests</li>
+  <li>Font awesome (needs to be added as an include in the .angular-cli file</li>
+  <li>@angular/cdk, @angular/flex-layout, @angular/material, font-awesome, hammerjs, web-animations-js</li>
+  <li>HammerJS for touch control (needs to be imported into main.ts too), </li>
+  <li>Update styles.scss to include a reference to a material template</li>
+  <li>Add link to Material icons onto index.html</li>
+</ul>
+<h2>Adding Routes</h2>
+<ul>
+  <li>We are ready to add sample routing for this seed project</li>
+  <li>Added in the routing module and set up a new page</li>
+  <li>Moved this help guide to an initial new location of the home component page</li>
+  <li>Ran <strong>ng test</strong> and discovered that the test need to include the same modules as the pages </li>
+  <li>Fix the broken tests to add the missing</li>
+  <li>Refactor this help guide so each page is a route</li>
+  <li>Create a route to a page that uses a service to get data &amp; tests</li>
+  <li>Route for pictures <strong>ng g module --routing pics --dry-run</strong> lets us create a new area with a folder <strong>src/app/pics/</strong>  </li>
+<li>Add tracing=true</li>
+  <li>Create an interceptor so that the data is populated by the routing before the page starts &amp; add tests</li>
+</ul>
+<h2>Adding and optimising images</h2>
+<ul>
+  <li>Add some static images to our assets folder and then optimise them using the build process for display on mobile devices</li>
+</ul>
+<h2>Extra bits</h2>
+<ul>
+  <li>Progressive web app (https://moduscreate.com/blog/creating-progressive-web-apps-using-angular/)</li>
+  <li>Logins and security (https://auth0.com/)</li>
+  <li>Optimising CSS (purify - might need to eject cli https://github.com/purifycss/purifycss )</li>
+</ul>
+<h2>Useful tools</h2>
+<ul>
+  <li>Webpack analyzer</li>
+
+</ul>
+<h2>Useful links</h2>
+<ul>
+  <li>Azure CI/CD with angular https://blogs.msdn.microsoft.com/wael-kdouh/2017/09/11/deploying-your-angular-application-to-azure-using-visual-studio-team-services-vsts/</li>
+<li>Setting up a build server https://docs.microsoft.com/en-us/vsts/build-release/actions/agents/v2-windows</li>
+</ul>
+</div>
