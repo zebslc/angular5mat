@@ -4,12 +4,11 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { PageNotFoundComponent } from './core/page-not-found.component';
 import { HomeComponent } from './core/home/home.component';
 
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent, pathMatch: 'full' },
 
-  const appRoutes: Routes = [
-    { path: '', component: HomeComponent, pathMatch: 'full'},
-
-    { path: '**', component: HomeComponent }
-  ];
+  { path: '**', component: HomeComponent }
+];
 
 @NgModule({
   imports: [
@@ -19,10 +18,8 @@ import { HomeComponent } from './core/home/home.component';
     })
   ],
   providers: [],
-  exports: [RouterModule]
+  exports: [RouterModule, appRoutes]
 })
 export class AppRoutingModule {
-  public get SeedRoutes() : Routes {
-    return appRoutes;
-  }
+  static applicationRoutes: Routes = appRoutes;
 }
