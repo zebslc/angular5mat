@@ -5,9 +5,10 @@ import { PageNotFoundComponent } from './core/page-not-found.component';
 import { HomeComponent } from './core/home/home.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-
-  { path: '**', component: HomeComponent }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'pagenotfound', component: PageNotFoundComponent },
+  { path: '**', redirectTo: 'pagenotfound' }
 ];
 
 @NgModule({
@@ -18,7 +19,7 @@ const appRoutes: Routes = [
     })
   ],
   providers: [],
-  exports: [RouterModule, appRoutes]
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
   static applicationRoutes: Routes = appRoutes;

@@ -6,7 +6,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "test": "ng test",
+    "test": "ng test --browsers Chrome",
+    "ct": "ng test --single-run --browsers ChromeHeadless --sourcemaps=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "cover": "ng test --code-coverage"

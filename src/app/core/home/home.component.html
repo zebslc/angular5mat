@@ -42,6 +42,7 @@
 <h2>Set up testing (CT)</h2>
 <ul>
 <li>Added Puppetter, Headless chrome etc...</li>
+<li>Created a new test script with <strong>npm run-script ct</strong> which you replace the <strong>npm run-script test</strong> on the CI build step.  Gives interactive local dev using <strong>ng test</strong> but the one off build we need for CI</li>
 <li>Configured Karma and Protractor to create coverage reports and use "Cobertura" which is a standard xml format for reporting in builds</li>
 <li>In the online build process configured steps for e2e and test/coverage with reporting so that the results appear on the summary</li>
 <li>The coverage report also includes tolerance percentage levels for acceptable coverage levels (can type <strong>npm run cover</strong> to see it)</li>

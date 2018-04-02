@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './core/page-not-found.component';
 import { Location } from '@angular/common';
 import { TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,7 +26,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
-      declarations: [HomeComponent, AppComponent]
+      declarations: [HomeComponent, AppComponent, PageNotFoundComponent]
     });
 
     router = TestBed.get(Router);
