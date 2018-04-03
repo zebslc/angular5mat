@@ -4,8 +4,10 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "webpack-dev-server --port=4200",
-    "build": "webpack",
+    "start": "webpack-dev-server --port=4200 --config webpack.dev.config",
+    "watch": "webpack --watch --config webpack.dev.config",
+    "build": "webpack --config webpack.dev.config",
+    "build:prod": "webpack --config webpack.prod.config",
     "test": "karma start ./karma.conf.js",
     "ct": "karma start ./karma.conf.js --single-run --browsers ChromeHeadless --sourcemaps=false",
     "lint": "ng lint",
