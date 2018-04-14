@@ -31,6 +31,8 @@ This option only runs the tests once and does not carry on watching for changes
 
 Run `npm e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).  This produces files in `**/e2e-results-junit.xml` that can be published by the Visual Studio online CI process.  
 
+Please note E2E is broken for automation since ejecting.  To run locally open two terminals. In the first run <strong>npm start</strong> in the second run <strong>npm run e2e</strong> There is an outstanding question on stack overflow https://stackoverflow.com/questions/49655014/angular-continuous-integration-e2e-test-broken-on-visualstudioonline-after-eject 
+
 ## Azure CI/CT comments
 
 Use the NPM custom task with `run-script` e.g. `run-script e2e` to run the end to end tests.  You will need to use `install --force` as the first npm task in order to address the security issue that seems to occur when the build process tries to re-run subsequent times
