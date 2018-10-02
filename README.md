@@ -35,7 +35,10 @@ Please note E2E is broken for automation since ejecting.  To run locally open tw
 
 ## Azure CI/CT comments
 
-Use the NPM custom task with `run-script` e.g. `run-script e2e` to run the end to end tests.  You will need to use `install --force` as the first npm task in order to address the security issue that seems to occur when the build process tries to re-run subsequent times
+Use the NPM custom task with `run-script` e.g. `run-script e2e` to run the end to end tests.  In VSTS use the following in the `publish code coverage` results fields:-
+`summary file:- $(Build.Repository.LocalPath)\coverage\cobertura-coverage.xml`
+`report directory: $(Build.Repository.LocalPath)\coverage\`
+Also use https://davidsekar.com/aspnetcore/code-coverage-html-reports-are-missing-styles-in-vsts with a `postcover` task so your coverage report has styling
 
 ## Further help
 
